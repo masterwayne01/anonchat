@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>anonymous</title>
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #000000;
+      min-height: 100%;
+    }
+
+    .bc-wrap{
+      max-width: 780px;
+      margin: 24px auto;
+      background:#050805;
+      border:1px solid rgba(0,255,102,.35);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      color:#00ff66;
+      box-shadow: 0 0 30px rgba(0,255,102,.10);
+    }
+
+    .bc-top{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:10px 14px;
+      border-bottom:1px solid rgba(0,255,102,.25);
+    }
+
+    .bc-title{
+      font-size:14px;
+      letter-spacing:.6px;
+      color:rgba(0,255,102,.95);
+      text-transform: lowercase;
+    }
+
+    .bc-status{
+      font-size:12px;
+      color:rgba(0,255,102,.6);
+    }
+
+    .bc-chat{
+      padding:14px;
+      height: 360px;
+      overflow:auto;
+      line-height:1.45;
+    }
+
+    .bc-line{ margin:6px 0; }
+    .bc-user{ color:rgba(0,255,102,.75); margin-right:10px; }
+    .bc-dim{ color:rgba(0,255,102,.45); font-style:italic; }
+
+    .bc-input{
+      display:flex;
+      gap:10px;
+      padding:12px 14px;
+      border-top:1px solid rgba(0,255,102,.25);
+    }
+
+    .bc-text{
+      flex:1;
+      background:#030503;
+      border:1px solid rgba(0,255,102,.25);
+      color:#00ff66;
+      padding:10px 12px;
+      outline:none;
+    }
+
+    .bc-text::placeholder{ color:rgba(0,255,102,.35); }
+
+    .bc-send{
+      background:#00ff66;
+      color:#021d0b;
+      border:none;
+      padding:10px 14px;
+      font-weight:700;
+      cursor:pointer;
+    }
+
+    .bc-send:active{ transform: translateY(1px); }
+
+    /* ---- name tab ---- */
+    .bc-namebar{
+      display:flex;
+      gap:10px;
+      padding:12px 14px;
+      border-top:1px solid rgba(0,255,102,.25);
+      background:#040704;
+      align-items:center;
+    }
+
+    .bc-label{
+      font-size:12px;
+      color:rgba(0,255,102,.7);
+      white-space:nowrap;
+    }
+
+    .bc-name{
+      flex:1;
+      background:#030503;
+      border:1px solid rgba(0,255,102,.25);
+      color:#00ff66;
+      padding:10px 12px;
+      outline:none;
+    }
+
+    .bc-name::placeholder{ color:rgba(0,255,102,.35); }
+
+    .bc-save{
+      background:transparent;
+      border:1px solid rgba(0,255,102,.45);
+      color:#00ff66;
+      padding:10px 14px;
+      font-weight:700;
+      cursor:pointer;
+    }
+
+    .bc-save:active{ transform: translateY(1px); }
+  </style>
+</head>
+
+<body>
+  <div class="bc-wrap">
+    <div class="bc-top">
+      <div class="bc-title" id="bc-title">anonymous</div>
+      <div class="bc-status" id="bc-status">offline • local demo</div>
+    </div>
+
+    <!-- name tab -->
+    <div class="bc-namebar">
+      <div class="bc-label">name:</div>
+      <input class="bc-name" id="bc-name" placeholder="choose any name..." autocomplete="off">
+      <button class="bc-save" id="bc-save">set</button>
+    </div>
+
+    <div class="bc-chat" id="bc-chat">
+      <div class="bc-line"><span class="bc-user">&lt;anon#4f5&gt;</span> hello</div>
+      <div class="bc-line"><span class="bc-user">&lt;anon#c05&gt;</span> you’re in</div>
+      <div class="bc-line bc-dim">* tor restarted. network routing restored. *</div>
+    </div>
+
+    <div class="bc-input">
+      <input class="bc-text" id="bc-text" placeholder="type a message..." autocomplete="off">
+      <button class="bc-send" id="bc-send">send</button>
+    </div>
+  </div>
+
+  <script>
+    // local-only demo: adds text to the box (does NOT send over internet)
+    const chat = document.getElementById('bc-chat');
+    const input = document.getElementById('bc-text');
+    const btn = document.getElementById('bc-send');
+
+    const nameInput = document.getElementById('bc-name');
+    const saveBtn = document.getElementById('bc-save');
+    const title = document.getElementById('bc-title');
+    const status = document.getElementById('bc-status');
+
+    // Load name from localStorage if available
+    let currentName = localStorage.getItem('bc_name') || 'you';
+    nameInput.value = currentName;
+
+    function escapeHtml(s) {
+      return s.replace(/&/g,'&amp;')
+              .replace(/</g,'&lt;')
+              .replace(/>/g,'&gt;')
+              .replace(/"/g,'&quot;')
+              .replace(/'/g,'&#039;');
+    }
+
+    function addLine(user, text){
+      const div = document.createElement('div');
+      div.className = 'bc-line';
+      div.innerHTML = `<span class="bc-user">&lt;${escapeHtml(user)}&gt;</span> ${escapeHtml(text)}`;
+      chat.appendChild(div);
+      chat.scrollTop = chat.scrollHeight;
+    }
+
+    function setName(){
+      const n = nameInput.value.trim();
+      if(!n) return;
+
+      currentName = n.slice(0, 24); // keep it short + clean
+      localStorage.setItem('bc_name', currentName);
+
+      title.textContent = 'anonymous';
+      status.textContent = `online • local demo • ${currentName}`;
+      addLine('system', `identity set: ${currentName}`);
+    }
+
+    saveBtn.addEventListener('click', setName);
+    nameInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') setName();
+    });
+
+    btn.addEventListener('click', () => {
+      const t = input.value.trim();
+      if(!t) return;
+      addLine(currentName, t);
+      input.value = '';
+    });
+
+    input.addEventListener('keydown', (e) => {
+      if(e.key === 'Enter') btn.click();
+    });
+
+    // init status
+    status.textContent = `online • local demo • ${currentName}`;
+  </script>
+</body>
+</html>
