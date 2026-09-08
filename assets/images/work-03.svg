@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1500" width="1200" height="1500" role="img" aria-hidden="true">
+  <rect width="1200" height="1500" fill="#F1EADF"/>
+  <rect y="1320" width="1200" height="180" fill="#E6DFD4"/>
+  <ellipse cx="600" cy="726" rx="504" ry="686" fill="#F2ECE2" opacity="0.55"/>
+  <ellipse cx="659" cy="1348" rx="455" ry="54" fill="#2A211B" opacity="0.16"/>
+  
+  <path d="M 345 330
+           L 174 488
+           L 259 667
+           L 311 1320
+           L 889 1320
+           L 941 667
+           L 1026 488
+           L 855 330
+           L 600 429 Z" fill="#A08871"/>
+  <rect x="481" y="686" width="238" height="139" rx="3" fill="#7A6553" opacity="0.8"/>
+  <text x="66" y="97" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="31" letter-spacing="3.1" fill="#6B5A4E" opacity="0.6">PLACEHOLDER / MODEL</text>
+</svg>

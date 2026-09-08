@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" width="1200" height="1200" role="img" aria-hidden="true">
+  <rect width="1200" height="1200" fill="#E2D4BE"/>
+  <rect y="840" width="1200" height="360" fill="#D7CAB5"/>
+  <ellipse cx="600" cy="462" rx="504" ry="437" fill="#E4D8C4" opacity="0.55"/>
+  <rect x="802" y="629" width="288" height="211" rx="4" fill="#C2B6A3"/>
+  <ellipse cx="629" cy="853" rx="221" ry="26" fill="#2A211B" opacity="0.16"/>
+  
+  <rect x="379" y="485" width="442" height="355" rx="40" fill="#6E5B4B"/>
+  <rect x="366" y="360" width="468" height="125" rx="35" fill="#A85A3E"/>
+  <rect x="468" y="620" width="265" height="96" rx="3" fill="#8B7B6F" opacity="0.6"/>
+  <text x="66" y="97" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="31" letter-spacing="3.1" fill="#6B5A4E" opacity="0.6">PLACEHOLDER / VIDEO LOOP</text>
+</svg>

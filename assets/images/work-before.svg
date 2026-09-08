@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1500" width="1200" height="1500" role="img" aria-hidden="true">
+  <rect width="1200" height="1500" fill="#EDEAE3"/>
+  
+  <rect x="450" y="442" width="300" height="548" rx="30" fill="#9A8F82"/>
+  <rect x="552" y="390" width="96" height="57" fill="#8A8075"/>
+  <rect x="522" y="240" width="156" height="150" rx="15" fill="#8E8377"/>
+  <rect x="498" y="596" width="204" height="186" rx="3" fill="#ACA398" opacity="0.65"/>
+  <text x="66" y="97" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="31" letter-spacing="3.1" fill="#6B5A4E" opacity="0.6">PLACEHOLDER / BEFORE</text>
+</svg>

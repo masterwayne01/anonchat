@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="8" fill="#F6F1E9"/>
+  <g fill="none" stroke="#A85A3E" stroke-width="4" stroke-linecap="square">
+    <path d="M12 22V12h10"/>
+    <path d="M52 22V12H42"/>
+    <path d="M12 42v10h10"/>
+    <path d="M52 42v10H42"/>
+  </g>
+  <text x="32" y="43" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif"
+        font-size="30" font-weight="600" fill="#2A211B">R</text>
+</svg>

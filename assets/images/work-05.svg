@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1600" width="1200" height="1600" role="img" aria-hidden="true">
+  <rect width="1200" height="1600" fill="#DBCDB7"/>
+  <rect y="1152" width="1200" height="448" fill="#D1C3AE"/>
+  <ellipse cx="600" cy="634" rx="504" ry="599" fill="#DED2BE" opacity="0.55"/>
+  <rect x="810" y="735" width="336" height="417" rx="4" fill="#BCB09D"/>
+  <ellipse cx="568" cy="1171" rx="309" ry="37" fill="#2A211B" opacity="0.16"/>
+  
+  <rect x="286" y="480" width="484" height="672" rx="19" fill="#8C7A67"/>
+  <rect x="286" y="480" width="145" height="672" fill="#7B6B5A"/>
+  <rect x="480" y="682" width="213" height="228" rx="3" fill="#A85A3E" opacity="0.85"/>
+  <text x="66" y="97" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="31" letter-spacing="3.1" fill="#6B5A4E" opacity="0.6">PLACEHOLDER / SCENE</text>
+</svg>

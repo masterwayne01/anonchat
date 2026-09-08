@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" role="img" aria-hidden="true">
+  <rect width="1600" height="900" fill="#DBCDB7"/>
+  <rect y="666" width="1600" height="234" fill="#D1C3AE"/>
+  <ellipse cx="800" cy="366" rx="672" ry="346" fill="#DED2BE" opacity="0.55"/>
+  <rect x="774" y="563" width="277" height="103" rx="4" fill="#BCB09D"/>
+  <ellipse cx="632" cy="677" rx="182" ry="22" fill="#2A211B" opacity="0.16"/>
+  
+  <path d="M 747 381 a 95 95 0 1 1 0 174" fill="none" stroke="#6E5B4B" stroke-width="44"/>
+  <path d="M 450 270 L 747 270 L 722 666 L 475 666 Z" fill="#6E5B4B"/>
+  <rect x="469" y="420" width="209" height="103" rx="3" fill="#A85A3E" opacity="0.7"/>
+  <text x="50" y="73" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="23" letter-spacing="2.3" fill="#6B5A4E" opacity="0.6">PLACEHOLDER / LIFESTYLE</text>
+</svg>

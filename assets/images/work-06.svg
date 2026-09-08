@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1600" width="1200" height="1600" role="img" aria-hidden="true">
+  <rect width="1200" height="1600" fill="#EFE7DA"/>
+  <rect y="1120" width="1200" height="480" fill="#E4DCD0"/>
+  <ellipse cx="600" cy="616" rx="504" ry="582" fill="#F0E9DD" opacity="0.55"/>
+  <ellipse cx="652" cy="1144" rx="397" ry="48" fill="#2A211B" opacity="0.16"/>
+  
+  <path d="M 470 1120.0 L 730 1120.0 L 688 342 L 512 342 Z" fill="#7A6553"/>
+  <rect x="507" y="256" width="187" height="89" rx="4" fill="#A85A3E"/>
+  <rect x="522" y="602" width="156" height="207" rx="3" fill="#978678" opacity="0.6"/>
+  <text x="66" y="97" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="31" letter-spacing="3.1" fill="#6B5A4E" opacity="0.6">PLACEHOLDER / STILL</text>
+</svg>

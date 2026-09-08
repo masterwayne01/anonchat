@@ -1,215 +1,581 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>anonymous</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Reframe — Product visuals for e-commerce brands</title>
+<meta name="description" content="Photoreal product photography and video for e-commerce brands. No studio, no crew, no shoot day. Send your product, we build the scene around it.">
+<link rel="canonical" href="https://wereframe.studio/">
+<meta name="theme-color" content="#F6F1E9">
+<meta name="color-scheme" content="light">
 
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      background: #000000;
-      min-height: 100%;
-    }
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Reframe">
+<meta property="og:url" content="https://wereframe.studio/">
+<meta property="og:title" content="Reframe — Product visuals for e-commerce brands">
+<meta property="og:description" content="Photoreal product photography and video for e-commerce brands. No studio, no crew, no shoot day.">
+<!-- TODO before launch: export a 1200x630 JPG of a real hero visual to assets/images/og-cover.jpg and uncomment.
+<meta property="og:image" content="https://wereframe.studio/assets/images/og-cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="A product still produced by Reframe.">
+-->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Reframe — Product visuals for e-commerce brands">
+<meta name="twitter:description" content="Photoreal product photography and video for e-commerce brands. No studio, no crew, no shoot day.">
 
-    .bc-wrap{
-      max-width: 780px;
-      margin: 24px auto;
-      background:#050805;
-      border:1px solid rgba(0,255,102,.35);
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-      color:#00ff66;
-      box-shadow: 0 0 30px rgba(0,255,102,.10);
-    }
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 
-    .bc-top{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:10px 14px;
-      border-bottom:1px solid rgba(0,255,102,.25);
-    }
+<link rel="preload" href="/assets/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/styles.css">
 
-    .bc-title{
-      font-size:14px;
-      letter-spacing:.6px;
-      color:rgba(0,255,102,.95);
-      text-transform: lowercase;
-    }
-
-    .bc-status{
-      font-size:12px;
-      color:rgba(0,255,102,.6);
-    }
-
-    .bc-chat{
-      padding:14px;
-      height: 360px;
-      overflow:auto;
-      line-height:1.45;
-    }
-
-    .bc-line{ margin:6px 0; }
-    .bc-user{ color:rgba(0,255,102,.75); margin-right:10px; }
-    .bc-dim{ color:rgba(0,255,102,.45); font-style:italic; }
-
-    .bc-input{
-      display:flex;
-      gap:10px;
-      padding:12px 14px;
-      border-top:1px solid rgba(0,255,102,.25);
-    }
-
-    .bc-text{
-      flex:1;
-      background:#030503;
-      border:1px solid rgba(0,255,102,.25);
-      color:#00ff66;
-      padding:10px 12px;
-      outline:none;
-    }
-
-    .bc-text::placeholder{ color:rgba(0,255,102,.35); }
-
-    .bc-send{
-      background:#00ff66;
-      color:#021d0b;
-      border:none;
-      padding:10px 14px;
-      font-weight:700;
-      cursor:pointer;
-    }
-
-    .bc-send:active{ transform: translateY(1px); }
-
-    /* ---- name tab ---- */
-    .bc-namebar{
-      display:flex;
-      gap:10px;
-      padding:12px 14px;
-      border-top:1px solid rgba(0,255,102,.25);
-      background:#040704;
-      align-items:center;
-    }
-
-    .bc-label{
-      font-size:12px;
-      color:rgba(0,255,102,.7);
-      white-space:nowrap;
-    }
-
-    .bc-name{
-      flex:1;
-      background:#030503;
-      border:1px solid rgba(0,255,102,.25);
-      color:#00ff66;
-      padding:10px 12px;
-      outline:none;
-    }
-
-    .bc-name::placeholder{ color:rgba(0,255,102,.35); }
-
-    .bc-save{
-      background:transparent;
-      border:1px solid rgba(0,255,102,.45);
-      color:#00ff66;
-      padding:10px 14px;
-      font-weight:700;
-      cursor:pointer;
-    }
-
-    .bc-save:active{ transform: translateY(1px); }
-  </style>
+<script>document.documentElement.classList.add('js');</script>
 </head>
-
 <body>
-  <div class="bc-wrap">
-    <div class="bc-top">
-      <div class="bc-title" id="bc-title">anonymous</div>
-      <div class="bc-status" id="bc-status">offline • local demo</div>
-    </div>
 
-    <!-- name tab -->
-    <div class="bc-namebar">
-      <div class="bc-label">name:</div>
-      <input class="bc-name" id="bc-name" placeholder="choose any name..." autocomplete="off">
-      <button class="bc-save" id="bc-save">set</button>
-    </div>
+<a class="skip" href="#main">Skip to content</a>
 
-    <div class="bc-chat" id="bc-chat">
-      <div class="bc-line"><span class="bc-user">&lt;anon#4f5&gt;</span> hello</div>
-      <div class="bc-line"><span class="bc-user">&lt;anon#c05&gt;</span> you’re in</div>
-      <div class="bc-line bc-dim">* tor restarted. network routing restored. *</div>
-    </div>
-
-    <div class="bc-input">
-      <input class="bc-text" id="bc-text" placeholder="type a message..." autocomplete="off">
-      <button class="bc-send" id="bc-send">send</button>
-    </div>
+<header class="site-header" id="site-header">
+  <div class="shell site-header__inner">
+    <a class="wordmark" href="#top" aria-label="Reframe, home">Reframe</a>
+    <nav class="site-nav" aria-label="Sections">
+      <a href="#work">Work</a>
+      <a href="#process">Process</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="btn btn--small" href="#contact">Start a project</a>
   </div>
+</header>
 
-  <script>
-    // local-only demo: adds text to the box (does NOT send over internet)
-    const chat = document.getElementById('bc-chat');
-    const input = document.getElementById('bc-text');
-    const btn = document.getElementById('bc-send');
+<main id="main">
 
-    const nameInput = document.getElementById('bc-name');
-    const saveBtn = document.getElementById('bc-save');
-    const title = document.getElementById('bc-title');
-    const status = document.getElementById('bc-status');
+  <!-- ============================================ HERO -->
+  <section class="hero" id="top">
+    <div class="shell">
+      <div class="hero__grid">
+        <div class="hero__copy">
+          <h1 class="display hero__title">Reframe how people see your product.</h1>
+          <p class="lead">
+            Photoreal product images and video for e-commerce brands. No studio, no crew,
+            no shoot day. You send us the product. We build the scene around it.
+          </p>
+          <p class="hero__cta">
+            <a class="btn" href="#contact">Start a project</a>
+          </p>
+          <p class="hero__note">
+            Made with AI, art directed by people. That is why it takes days instead of weeks.
+          </p>
+        </div>
 
-    // Load name from localStorage if available
-    let currentName = localStorage.getItem('bc_name') || 'you';
-    nameInput.value = currentName;
+        <figure class="hero__shot">
+          <div class="vf">
+            <img src="/assets/images/hero.svg"
+                 alt="Placeholder: a skincare dropper bottle lit on a warm sand-coloured set, with a soft shadow falling to the right."
+                 width="1400" height="1750" fetchpriority="high" decoding="async">
+          </div>
+        </figure>
+      </div>
+    </div>
+  </section>
 
-    function escapeHtml(s) {
-      return s.replace(/&/g,'&amp;')
-              .replace(/</g,'&lt;')
-              .replace(/>/g,'&gt;')
-              .replace(/"/g,'&quot;')
-              .replace(/'/g,'&#039;');
-    }
+  <!-- ============================================ THE WORK -->
+  <section class="section section--work" id="work">
+    <div class="shell">
+      <header class="section__head reveal">
+        <p class="eyebrow">The work</p>
+        <h2 class="display section__title">No shoot day. Look as close as you like.</h2>
+        <p class="lead measure">
+          Nothing on this page was photographed. No studio was booked, no sample was shipped,
+          no model was hired. The products are real. The scenes are built.
+        </p>
+      </header>
 
-    function addLine(user, text){
-      const div = document.createElement('div');
-      div.className = 'bc-line';
-      div.innerHTML = `<span class="bc-user">&lt;${escapeHtml(user)}&gt;</span> ${escapeHtml(text)}`;
-      chat.appendChild(div);
-      chat.scrollTop = chat.scrollHeight;
-    }
+      <!-- before / after -->
+      <div class="ba-block reveal">
+        <div class="ba-block__copy">
+          <h3 class="display h3">The same product, twice.</h3>
+          <p>
+            Most brands are running a supplier photo or a phone shot on a white background.
+            It sells the product short and it costs conversions.
+          </p>
+          <p class="muted">Drag the handle to compare.</p>
+        </div>
 
-    function setName(){
-      const n = nameInput.value.trim();
-      if(!n) return;
+        <div class="ba" data-ba>
+          <div class="ba__stack">
+            <img class="ba__img"
+                 src="/assets/images/work-before.svg"
+                 alt="Placeholder: the original supplier photo of a dropper bottle, flat lighting on a plain background."
+                 width="1200" height="1500" loading="lazy" decoding="async">
+            <div class="ba__after" data-ba-after>
+              <img class="ba__img"
+                   src="/assets/images/work-after.svg"
+                   alt="Placeholder: the same dropper bottle in a built scene with directional light and a warm backdrop."
+                   width="1200" height="1500" loading="lazy" decoding="async">
+            </div>
+            <div class="ba__handle" data-ba-handle aria-hidden="true"><span class="ba__grip"></span></div>
+            <span class="ba__tag ba__tag--l" aria-hidden="true">Before</span>
+            <span class="ba__tag ba__tag--r" aria-hidden="true">After</span>
+          </div>
+          <input class="ba__range" type="range" min="0" max="100" value="50" step="0.5"
+                 data-ba-range aria-label="Reveal the reframed image">
+        </div>
+      </div>
 
-      currentName = n.slice(0, 24); // keep it short + clean
-      localStorage.setItem('bc_name', currentName);
+      <!-- gallery -->
+      <div class="gallery">
 
-      title.textContent = 'anonymous';
-      status.textContent = `online • local demo • ${currentName}`;
-      addLine('system', `identity set: ${currentName}`);
-    }
+        <figure class="shot reveal">
+          <img src="/assets/images/work-01.svg"
+               alt="Placeholder: a ceramic mug on a warm countertop in soft afternoon light."
+               width="1600" height="900" loading="lazy" decoding="async">
+          <figcaption class="cap">Drinkware · lifestyle scene</figcaption>
+        </figure>
 
-    saveBtn.addEventListener('click', setName);
-    nameInput.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') setName();
-    });
+        <div class="row row--2">
+          <figure class="shot reveal">
+            <img src="/assets/images/work-02.svg"
+                 alt="Placeholder: a supplement tin standing on a sand-coloured surface with a hard-edged shadow."
+                 width="1200" height="1500" loading="lazy" decoding="async">
+            <figcaption class="cap">Supplements · product still</figcaption>
+          </figure>
+          <figure class="shot reveal">
+            <img src="/assets/images/work-03.svg"
+                 alt="Placeholder: a t-shirt worn on a figure, cropped at the shoulders and hips, against a pale warm wall."
+                 width="1200" height="1500" loading="lazy" decoding="async">
+            <figcaption class="cap">Apparel · model shot</figcaption>
+          </figure>
+        </div>
 
-    btn.addEventListener('click', () => {
-      const t = input.value.trim();
-      if(!t) return;
-      addLine(currentName, t);
-      input.value = '';
-    });
+        <div class="row row--offset">
+          <figure class="shot reveal">
+            <img src="/assets/images/work-04.svg"
+                 alt="Placeholder: a candle jar beside a folded cloth, lit from one side."
+                 width="1200" height="1200" loading="lazy" decoding="async">
+            <figcaption class="cap"><span class="tag">Loop</span> Candles · product video</figcaption>
+          </figure>
+          <figure class="shot reveal">
+            <img src="/assets/images/work-05.svg"
+                 alt="Placeholder: a boxed home fragrance product staged on a shelf next to a taller object."
+                 width="1200" height="1600" loading="lazy" decoding="async">
+            <figcaption class="cap">Home goods · lifestyle scene</figcaption>
+          </figure>
+        </div>
 
-    input.addEventListener('keydown', (e) => {
-      if(e.key === 'Enter') btn.click();
-    });
+        <div class="row row--caption">
+          <figure class="shot reveal">
+            <img src="/assets/images/work-06.svg"
+                 alt="Placeholder: a skincare tube standing upright, lit from behind on a warm backdrop."
+                 width="1200" height="1600" loading="lazy" decoding="async">
+            <figcaption class="cap">Skincare · product still</figcaption>
+          </figure>
+          <div class="row__note reveal">
+            <h3 class="display h3">One product, as many scenes as you want to test.</h3>
+            <p>
+              A shoot gives you the shots you planned that morning. Working this way, a new
+              background is a revision, not another day of everybody's time.
+            </p>
+          </div>
+        </div>
 
-    // init status
-    status.textContent = `online • local demo • ${currentName}`;
-  </script>
+        <div class="strip reveal">
+          <figure class="shot shot--tile">
+            <img src="/assets/images/var-01.svg" alt="Placeholder: variation one, product on a pale sand backdrop." width="800" height="800" loading="lazy" decoding="async">
+          </figure>
+          <figure class="shot shot--tile">
+            <img src="/assets/images/var-02.svg" alt="Placeholder: variation two, product beside a stone block." width="800" height="800" loading="lazy" decoding="async">
+          </figure>
+          <figure class="shot shot--tile">
+            <img src="/assets/images/var-03.svg" alt="Placeholder: variation three, product offset left on a light backdrop." width="800" height="800" loading="lazy" decoding="async">
+          </figure>
+          <figure class="shot shot--tile">
+            <img src="/assets/images/var-04.svg" alt="Placeholder: variation four, product shot close on a deeper sand backdrop." width="800" height="800" loading="lazy" decoding="async">
+          </figure>
+        </div>
+        <p class="cap strip__cap reveal">One product, four scenes, built for ad testing.</p>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ WHAT WE MAKE -->
+  <section class="section section--alt" id="services">
+    <div class="shell">
+      <header class="section__head reveal">
+        <p class="eyebrow">What we make</p>
+        <h2 class="display section__title">Take one piece or all of it.</h2>
+      </header>
+
+      <ul class="list">
+        <li class="list__item reveal">
+          <h3 class="list__name display">Product stills</h3>
+          <p class="list__desc">Styled scenes for product pages, ads and social. Clean enough for a listing, interesting enough to stop a scroll.</p>
+        </li>
+        <li class="list__item reveal">
+          <h3 class="list__name display">Lifestyle scenes</h3>
+          <p class="list__desc">Your product in a room, on a counter, in a hand. Somewhere it belongs.</p>
+        </li>
+        <li class="list__item reveal">
+          <h3 class="list__name display">Product video</h3>
+          <p class="list__desc">Short loops for ads, product pages and Reels. Movement, without a shoot.</p>
+        </li>
+        <li class="list__item reveal">
+          <h3 class="list__name display">Model shots</h3>
+          <p class="list__desc">Your product worn or held. No casting, no booking, no usage fees.</p>
+        </li>
+        <li class="list__item reveal">
+          <h3 class="list__name display">Ad creative packs</h3>
+          <p class="list__desc">One product, many variations. Enough scenes and angles to actually test properly.</p>
+        </li>
+        <li class="list__item reveal">
+          <h3 class="list__name display">Seasonal refreshes</h3>
+          <p class="list__desc">Same product, new scene. Summer, autumn, holiday, without booking a studio each time.</p>
+        </li>
+        <li class="list__item reveal">
+          <h3 class="list__name display">Launch kits</h3>
+          <p class="list__desc">Everything for one drop as a package. Stills, lifestyle, video and ad variations.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============================================ HOW IT WORKS -->
+  <section class="section" id="process">
+    <div class="shell">
+      <header class="section__head reveal">
+        <p class="eyebrow">How it works</p>
+        <h2 class="display section__title">Four steps, start to files.</h2>
+      </header>
+
+      <ol class="steps">
+        <li class="step reveal">
+          <span class="step__num display" aria-hidden="true">01</span>
+          <h3 class="step__name display">Send your product</h3>
+          <p>Send the product photos you already have, or just the link to your product page. Nothing gets shipped anywhere.</p>
+        </li>
+        <li class="step reveal">
+          <span class="step__num display" aria-hidden="true">02</span>
+          <h3 class="step__name display">Approve the direction</h3>
+          <p>We send a direction board: mood, lighting, styling, references. You approve it before full production starts.</p>
+        </li>
+        <li class="step reveal">
+          <span class="step__num display" aria-hidden="true">03</span>
+          <h3 class="step__name display">Production</h3>
+          <p>We build the scenes. First delivery in <span class="tbd">[X]</span> days.</p>
+        </li>
+        <li class="step reveal">
+          <span class="step__num display" aria-hidden="true">04</span>
+          <h3 class="step__name display">Two rounds of revisions</h3>
+          <p>Included, not an upsell. Then final files, sized and ready for web and ads.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============================================ COMPARISON -->
+  <section class="section section--alt" id="compare">
+    <div class="shell">
+      <header class="section__head reveal">
+        <p class="eyebrow">The honest comparison</p>
+        <h2 class="display section__title">Why not just book a photoshoot?</h2>
+        <p class="lead measure">
+          Sometimes you should. If you need a real crew, a real location and a real model on a
+          real day, book one. Here is what you are actually choosing between.
+        </p>
+      </header>
+
+      <div class="compare">
+        <article class="card card--muted reveal">
+          <h3 class="card__title display">A studio day</h3>
+          <dl class="facts">
+            <dt>Cost</dt>
+            <dd>Studio hire, photographer, assistant, stylist, model, retouching. It adds up before a single frame is shot.</dd>
+            <dt>Timeline</dt>
+            <dd>Weeks from booking to final files, if the calendar cooperates.</dd>
+            <dt>What you organise</dt>
+            <dd>Samples shipped, a date everyone can make, a location, a shot list you cannot change on the day.</dd>
+            <dt>Changing your mind</dt>
+            <dd>A different background means another shoot.</dd>
+            <dt>Testing variations</dt>
+            <dd>You get the shots you planned. More scenes cost another day.</dd>
+          </dl>
+        </article>
+
+        <article class="card card--raised reveal">
+          <div class="vf vf--card">
+            <h3 class="card__title display">Reframe</h3>
+            <dl class="facts">
+              <dt>Cost</dt>
+              <dd>From <span class="tbd">[$X]</span> a piece. You pay for what you order, not for a day rate.</dd>
+              <dt>Timeline</dt>
+              <dd>First delivery in <span class="tbd">[X]</span> days from approving the direction.</dd>
+              <dt>What you organise</dt>
+              <dd>Send photos or a product link. That is the whole ask.</dd>
+              <dt>Changing your mind</dt>
+              <dd>A different background is a revision, not a reshoot.</dd>
+              <dt>Testing variations</dt>
+              <dd>Priced per piece, so ten scenes of one product is a line item, not a production.</dd>
+            </dl>
+          </div>
+        </article>
+      </div>
+
+      <p class="compare__note measure reveal">
+        Photographers are very good at what they do, and this does not replace every shoot.
+        It is the option for brands that need good images more often than a shoot day allows.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================ PRICING -->
+  <section class="section" id="pricing">
+    <div class="shell">
+      <header class="section__head reveal">
+        <p class="eyebrow">Pricing</p>
+        <h2 class="display section__title">Priced per piece.</h2>
+        <p class="lead measure">No package you have to grow into. Order one image or forty.</p>
+      </header>
+
+      <ul class="list list--price">
+        <li class="list__item reveal">
+          <h3 class="list__name display">Product still</h3>
+          <p class="list__price display">from <span class="tbd">[$X]</span> <span class="unit">per image</span></p>
+        </li>
+        <li class="list__item reveal">
+          <h3 class="list__name display">Lifestyle scene</h3>
+          <p class="list__price display">from <span class="tbd">[$X]</span> <span class="unit">per image</span></p>
+        </li>
+        <li class="list__item reveal">
+          <h3 class="list__name display">Model shot</h3>
+          <p class="list__price display">from <span class="tbd">[$X]</span> <span class="unit">per image</span></p>
+        </li>
+        <li class="list__item reveal">
+          <h3 class="list__name display">Product video</h3>
+          <p class="list__price display">from <span class="tbd">[$X]</span> <span class="unit">per clip</span></p>
+        </li>
+        <li class="list__item reveal">
+          <h3 class="list__name display">Ad creative pack</h3>
+          <p class="list__price display">from <span class="tbd">[$X]</span> <span class="unit">for <span class="tbd">[N]</span> variations</span></p>
+        </li>
+        <li class="list__item reveal">
+          <h3 class="list__name display">Launch kit</h3>
+          <p class="list__price display">from <span class="tbd">[$X]</span> <span class="unit">per product</span></p>
+        </li>
+      </ul>
+
+      <div class="retainer reveal">
+        <div class="vf vf--card">
+          <h3 class="display h3">Producing continuously?</h3>
+          <p class="measure">
+            A monthly retainer covers <span class="tbd">[N]</span> pieces at
+            <span class="tbd">[$X]</span> a month, with priority turnaround and a standing
+            direction board so you skip the approval step every time. Pause it whenever you want.
+          </p>
+          <p class="fine">Two rounds of revisions are included on everything. Full commercial rights are yours on final payment.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ FAQ -->
+  <section class="section section--alt" id="faq">
+    <div class="shell">
+      <header class="section__head reveal">
+        <p class="eyebrow">Questions</p>
+        <h2 class="display section__title">The things everyone asks.</h2>
+      </header>
+
+      <div class="faq">
+        <details class="qa reveal">
+          <summary><span>Is this AI?</span></summary>
+          <div class="qa__body">
+            <p>
+              Yes. Every image and every clip we deliver is produced with AI tools, art directed
+              by us and checked before it goes out. We are not going to pretend otherwise.
+              It is the reason you get a shoot's worth of visuals in days, with no studio hire,
+              no crew and no location fee.
+            </p>
+          </div>
+        </details>
+
+        <details class="qa reveal">
+          <summary><span>Will it look fake?</span></summary>
+          <div class="qa__body">
+            <p>
+              That is the whole job. Your label has to be readable and correct. Light has to fall
+              the way light actually falls. Glass, liquid, fabric and metal have to behave.
+              We check every file at full size for the things that give bad AI images away,
+              and if a shot does not hold up, we do not send it.
+            </p>
+            <p>
+              You also see the direction before production starts, and you get two rounds of
+              revisions after delivery. Nothing goes live that you have not approved.
+            </p>
+          </div>
+        </details>
+
+        <details class="qa reveal">
+          <summary><span>Do I need to ship you my product?</span></summary>
+          <div class="qa__body">
+            <p>
+              No. Send the photos you already have, or just the URL of your product page.
+              The more angles and detail shots you can give us, the more accurate the result,
+              but a product page is enough to start.
+            </p>
+          </div>
+        </details>
+
+        <details class="qa reveal">
+          <summary><span>How many revisions do I get?</span></summary>
+          <div class="qa__body">
+            <p>
+              Two rounds, included on every piece. Revisions cover styling, lighting, background,
+              framing and crop. Changing to a completely different product is a new piece.
+            </p>
+          </div>
+        </details>
+
+        <details class="qa reveal">
+          <summary><span>Who owns the images?</span></summary>
+          <div class="qa__body">
+            <p>
+              You do. You get full commercial rights to everything we deliver, on final payment.
+              Use them on your site, in your ads, on social and in print. We do not license them
+              to anyone else.
+            </p>
+          </div>
+        </details>
+
+        <details class="qa reveal">
+          <summary><span>How fast is it?</span></summary>
+          <div class="qa__body">
+            <p>
+              First delivery lands <span class="tbd">[X]</span> days after you approve the
+              direction, and revisions come back within <span class="tbd">[X]</span> days.
+              A rush is possible on most projects. Ask when you send your product.
+            </p>
+          </div>
+        </details>
+
+        <details class="qa reveal">
+          <summary><span>What files do I get?</span></summary>
+          <div class="qa__body">
+            <p>
+              Full-resolution stills plus web-sized versions, in the crops you need for your
+              product page, your ads and social. Video is delivered in the aspect ratios you ask for.
+            </p>
+          </div>
+        </details>
+
+        <details class="qa reveal">
+          <summary><span>What if my product is difficult?</span></summary>
+          <div class="qa__body">
+            <p>
+              Some products are harder than others. Fine print, complex transparent packaging and
+              intricate texture all take more work, and a few things are not worth doing this way
+              at all. Send us the product page and we will tell you honestly before you pay anything.
+            </p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ CONTACT -->
+  <section class="section section--contact" id="contact">
+    <div class="shell">
+      <div class="contact">
+        <div class="contact__copy reveal">
+          <p class="eyebrow">Start a project</p>
+          <h2 class="display section__title">Send us a product page.</h2>
+          <p class="lead measure">
+            Tell us what you sell and what you need. We will come back with what we would make,
+            how long it would take and what it would cost. No call required.
+          </p>
+          <ul class="contact__direct">
+            <li>Email <a href="mailto:hello@wereframe.studio" class="tbd-link">hello@wereframe.studio</a></li>
+            <li>Instagram <a href="https://instagram.com/reframe.al" rel="me noopener">@reframe.al</a></li>
+          </ul>
+        </div>
+
+        <div class="contact__form reveal">
+          <div class="vf vf--card">
+            <form name="project" method="POST" data-netlify="true" netlify-honeypot="bot-field"
+                  action="/thanks.html" class="form" data-form>
+              <input type="hidden" name="form-name" value="project">
+              <p class="hp">
+                <label>Do not fill this in <input name="bot-field" tabindex="-1" autocomplete="off"></label>
+              </p>
+
+              <div class="field">
+                <label for="f-name">Name</label>
+                <input id="f-name" name="name" type="text" autocomplete="name" required>
+              </div>
+
+              <div class="field">
+                <label for="f-email">Email</label>
+                <input id="f-email" name="email" type="email" autocomplete="email" required>
+              </div>
+
+              <div class="field">
+                <label for="f-url">Product page or website</label>
+                <input id="f-url" name="product_url" type="url" inputmode="url" placeholder="https://" required>
+              </div>
+
+              <div class="field">
+                <label for="f-brief">What do you need?</label>
+                <textarea id="f-brief" name="brief" rows="4" placeholder="Product stills for three SKUs, plus a couple of video loops for ads."></textarea>
+              </div>
+
+              <button class="btn btn--block" type="submit">Send it over</button>
+              <p class="form__status" data-form-status role="status" aria-live="polite"></p>
+              <p class="fine">We reply to everything, usually the same day.</p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="shell site-footer__inner">
+    <div>
+      <p class="wordmark wordmark--footer">Reframe</p>
+      <p class="fine">Product visuals for e-commerce brands. Made with AI, art directed by people.</p>
+    </div>
+    <nav class="site-footer__links" aria-label="Footer">
+      <a href="#work">Work</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#contact">Start a project</a>
+      <a href="https://instagram.com/reframe.al" rel="me noopener">Instagram</a>
+    </nav>
+    <p class="fine site-footer__legal">&copy; 2026 Reframe · wereframe.studio</p>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Reframe",
+  "description": "AI-native product visuals studio. Photoreal product photography and video for e-commerce brands, produced without a physical photoshoot.",
+  "url": "https://wereframe.studio/",
+  "sameAs": ["https://instagram.com/reframe.al"],
+  "email": "hello@wereframe.studio",
+  "areaServed": "Worldwide",
+  "serviceType": [
+    "Product photography",
+    "Product video",
+    "Lifestyle product imagery",
+    "Advertising creative"
+  ]
+}
+</script>
+
+<script src="/assets/js/main.js" defer></script>
 </body>
 </html>
