@@ -1,0 +1,580 @@
+/* ==========================================================================
+   PINKOIL — brand landing
+   Structure: tokens → base → topbar/door → hero → about → strip → footer
+              → taste (food view) → reveal/motion → placeholder helper
+   ========================================================================== */
+
+/* ---------- 1. Tokens ---------- */
+:root {
+  /* Core palette (brief §3) */
+  --silver: #c9ccd1;
+  --green: #2fcf8e;
+  --purple: #8b5cf6;
+  --ink: #0e0f12;
+  --mist: #6a6f78;
+
+  /* Silver range — used to build brushed-metal gradients */
+  --silver-hi: #eef0f2;
+  --silver-mid: #d4d7db;
+  --silver-lo: #a7abb2;
+  --silver-deep: #8d9198;
+
+  /* Warm range — food view only */
+  --cream: #f5ece0;
+  --sand: #ead7bd;
+  --amber: #d98a3d;
+  --ember: #a8482a;
+  --cocoa: #2a1b12;
+  --cocoa-mist: #7a6252;
+
+  /* Type */
+  --font-display: "Clash Display", "Neue Haas Grotesk Display", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Satoshi", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* Spacing / layout */
+  --gutter: clamp(16px, 4vw, 48px);
+  --maxw: 1320px;
+
+  /* Motion */
+  --ease: cubic-bezier(.2, .7, .1, 1);
+  --slow: 1.1s;
+}
+
+/* ---------- 2. Base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  background: var(--silver);
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--silver);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+html.is-locked, html.is-locked body { overflow: hidden; }
+
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; }
+button { font: inherit; color: inherit; }
+
+:focus-visible { outline: 1.5px solid var(--purple); outline-offset: 4px; border-radius: 2px; }
+
+.skip-link {
+  position: absolute; left: 12px; top: -48px; z-index: 100;
+  padding: 8px 14px; background: var(--ink); color: var(--silver-hi);
+  text-decoration: none; font-size: 13px; transition: top .2s;
+}
+.skip-link:focus { top: 12px; }
+
+.eyebrow {
+  margin: 0 0 28px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .32em;
+  text-transform: uppercase;
+  color: var(--mist);
+}
+
+/* ---------- 3. Top bar + "secret door" ---------- */
+.topbar {
+  position: fixed; inset: 0 0 auto 0; z-index: 20;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px var(--gutter);
+  pointer-events: none;               /* only children are clickable */
+  transition: background .6s var(--ease), backdrop-filter .6s var(--ease);
+}
+.topbar > * { pointer-events: auto; }
+.topbar.is-scrolled {
+  background: color-mix(in srgb, var(--silver) 70%, transparent);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
+  backdrop-filter: blur(14px) saturate(1.2);
+}
+
+.topbar__mark { display: inline-flex; opacity: .85; transition: opacity .4s; }
+.topbar__mark:hover { opacity: 1; }
+
+.door {
+  position: relative;
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 10px 2px;                   /* comfortable 44px hit area via line-height */
+  min-height: 44px;
+  background: none; border: 0; cursor: pointer;
+  font-size: 11px; font-weight: 500;
+  letter-spacing: .34em; text-transform: uppercase;
+  color: var(--ink);
+}
+.door__dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 0 0 color-mix(in srgb, var(--green) 50%, transparent);
+  animation: breathe 4.5s var(--ease) infinite;
+}
+.door__label { position: relative; }
+.door__label::after {
+  content: ""; position: absolute; left: 0; right: .34em; bottom: -4px; height: 1px;
+  background: linear-gradient(90deg, var(--green), var(--purple));
+  transform: scaleX(0); transform-origin: right;
+  transition: transform .6s var(--ease);
+}
+.door:hover .door__label::after,
+.door:focus-visible .door__label::after { transform: scaleX(1); transform-origin: left; }
+.door:hover .door__dot { background: var(--purple); }
+
+@keyframes breathe {
+  0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--green) 45%, transparent); }
+  50%      { box-shadow: 0 0 0 6px color-mix(in srgb, var(--green) 0%, transparent); }
+}
+
+/* ---------- 4. Hero ---------- */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: grid; place-items: center;
+  overflow: hidden;
+  isolation: isolate;
+  /* Brushed silver: layered gradients, no images */
+  background:
+    radial-gradient(120% 80% at 50% 0%, var(--silver-hi) 0%, transparent 60%),
+    linear-gradient(180deg, var(--silver-mid) 0%, var(--silver) 55%, var(--silver-lo) 100%);
+}
+
+/* Fine brushed grain + slow tonal drift (GPU: transform only) */
+.hero__metal {
+  position: absolute; inset: -20%;
+  z-index: -2;
+  background:
+    radial-gradient(40% 30% at 25% 35%, rgba(255,255,255,.55), transparent 70%),
+    radial-gradient(35% 28% at 78% 65%, rgba(255,255,255,.35), transparent 70%),
+    radial-gradient(30% 25% at 70% 20%, color-mix(in srgb, var(--purple) 10%, transparent), transparent 70%),
+    radial-gradient(30% 25% at 20% 80%, color-mix(in srgb, var(--green) 9%, transparent), transparent 70%),
+    repeating-linear-gradient(90deg, rgba(255,255,255,.05) 0 1px, rgba(0,0,0,.025) 1px 2px, transparent 2px 4px);
+  animation: drift 28s ease-in-out infinite alternate;
+  will-change: transform;
+}
+@keyframes drift {
+  0%   { transform: translate3d(-3%, -2%, 0) rotate(0deg); }
+  100% { transform: translate3d(3%, 2%, 0) rotate(2deg); }
+}
+
+/* Soft fade at the hero's bottom edge so it melts into the next section */
+.hero::after {
+  content: ""; position: absolute; inset: auto 0 0 0; height: 22%;
+  z-index: -1; pointer-events: none;
+  background: linear-gradient(180deg, transparent, var(--silver-lo));
+}
+
+/* The light-catch: a soft diagonal band crossing slowly */
+.hero__sheen {
+  position: absolute; inset: 0; z-index: -1;
+  overflow: hidden; pointer-events: none;
+}
+.hero__sheen::before {
+  content: ""; position: absolute; top: -50%; bottom: -50%; left: 0;
+  width: 60%;
+  background: linear-gradient(105deg,
+    transparent 0%,
+    rgba(255,255,255,0) 30%,
+    rgba(255,255,255,.42) 48%,
+    rgba(255,255,255,.12) 54%,
+    transparent 70%);
+  transform: translate3d(-120%, 0, 0) rotate(8deg);
+  animation: sheen 14s var(--ease) infinite;
+  will-change: transform;
+}
+@keyframes sheen {
+  0%       { transform: translate3d(-120%, 0, 0) rotate(8deg); }
+  55%,100% { transform: translate3d(260%, 0, 0) rotate(8deg); }
+}
+
+.hero__center {
+  display: flex; flex-direction: column; align-items: center;
+  gap: clamp(28px, 5vh, 56px);
+  padding: 96px var(--gutter) 120px;
+  text-align: center;
+}
+
+.hero__symbol {
+  position: relative;
+  width: clamp(180px, 52vw, 340px);
+  aspect-ratio: 1;
+  animation: rise 1.6s var(--ease) both;
+}
+.hero__symbol img {
+  position: relative; width: 100%; height: 100%;
+  filter:
+    drop-shadow(0 1px 0 rgba(255,255,255,.7))
+    drop-shadow(0 24px 30px rgba(14,15,18,.22));
+}
+/* Green/purple glow bleeding from behind the mark */
+.hero__glow {
+  position: absolute; inset: 8%;
+  border-radius: 50%;
+  background:
+    radial-gradient(closest-side at 35% 60%, color-mix(in srgb, var(--green) 55%, transparent), transparent),
+    radial-gradient(closest-side at 65% 40%, color-mix(in srgb, var(--purple) 55%, transparent), transparent);
+  filter: blur(36px);
+  opacity: .55;
+  animation: glow 9s ease-in-out infinite alternate;
+}
+@keyframes glow {
+  0%   { transform: scale(.94) rotate(0deg);  opacity: .45; }
+  100% { transform: scale(1.06) rotate(20deg); opacity: .65; }
+}
+
+.hero__line {
+  margin: 0;
+  max-width: 18ch;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.25rem, 3.4vw, 2.5rem);
+  line-height: 1.25;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--ink);
+  animation: rise 1.6s .25s var(--ease) both;
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translate3d(0, 18px, 0); }
+  to   { opacity: 1; transform: none; }
+}
+
+.scroll-cue {
+  position: absolute; left: 50%; bottom: clamp(20px, 4vh, 40px);
+  transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  text-decoration: none;
+  color: var(--mist);
+  font-size: 10px; letter-spacing: .38em; text-transform: uppercase;
+  padding-left: .38em; /* optically centre tracked text */
+  animation: rise 1.6s .6s var(--ease) both;
+}
+.scroll-cue__line {
+  position: relative; width: 1px; height: 44px; overflow: hidden;
+  background: color-mix(in srgb, var(--ink) 15%, transparent);
+}
+.scroll-cue__line::after {
+  content: ""; position: absolute; left: 0; top: -100%; width: 100%; height: 100%;
+  background: linear-gradient(var(--ink), transparent);
+  animation: fall 2.8s var(--ease) infinite;
+}
+@keyframes fall { to { top: 100%; } }
+
+/* ---------- 5. About / description ---------- */
+.about {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: grid; align-items: center;
+  padding: clamp(96px, 16vh, 180px) var(--gutter);
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--silver-lo) 0%, var(--silver) 22%, var(--silver-mid) 100%);
+}
+.about__wash {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(60% 50% at 88% 20%, color-mix(in srgb, var(--purple) 16%, transparent), transparent 70%),
+    radial-gradient(50% 38% at 8% 72%, color-mix(in srgb, var(--green) 13%, transparent), transparent 70%);
+}
+.about__inner {
+  position: relative;
+  width: 100%; max-width: var(--maxw); margin: 0 auto;
+}
+.about__copy {
+  margin: 0;
+  max-width: 30ch;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.35rem, 3vw, 2.35rem);
+  line-height: 1.32;
+  letter-spacing: .005em;
+  color: var(--ink);
+}
+.about__lines {
+  display: flex; flex-wrap: wrap; gap: 10px 28px;
+  margin: 44px 0 0; padding: 0; list-style: none;
+  font-size: 11px; letter-spacing: .3em; text-transform: uppercase; color: var(--mist);
+}
+.about__lines li { position: relative; padding-left: 16px; }
+.about__lines li::before {
+  content: ""; position: absolute; left: 0; top: 50%;
+  width: 6px; height: 1px; background: var(--ink); opacity: .5;
+}
+.about__lines .is-soon::before { background: var(--purple); opacity: 1; }
+
+/* Secondary mark placed asymmetrically */
+.about__mark {
+  position: absolute;
+  width: clamp(72px, 16vw, 180px);
+  right: var(--gutter);
+  bottom: clamp(48px, 10vh, 120px);
+  opacity: .85;
+  filter: drop-shadow(0 12px 18px rgba(14,15,18,.16));
+}
+
+/* ---------- 6. Photo strip (editorial offset) ---------- */
+.strip {
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: clamp(56px, 10vw, 140px);
+  padding: clamp(72px, 12vw, 160px) 0;
+  background: linear-gradient(180deg, var(--silver-mid), var(--silver) 40%, var(--silver-lo) 100%);
+}
+.shot { margin: 0; }
+.shot__frame {
+  overflow: hidden;
+  background: var(--silver-lo);
+  will-change: transform;
+}
+.shot__frame img {
+  width: 100%; height: 100%; object-fit: cover;
+  transform: scale(1.06);
+  transition: transform 1.8s var(--ease);
+}
+.shot.is-in .shot__frame img { transform: scale(1); }
+
+.shot figcaption {
+  margin-top: 14px;
+  font-size: 10px; letter-spacing: .32em; text-transform: uppercase; color: var(--mist);
+}
+
+/* Mobile: stack with alternating indents so it never reads as a list */
+.shot--a { padding: 0 22% 0 var(--gutter); }
+.shot--b { padding: 0 var(--gutter) 0 30%; }
+.shot--full { padding: 0; }
+.shot--c { padding: 0 38% 0 var(--gutter); }
+.shot--d { padding: 0 var(--gutter) 0 18%; }
+
+.shot--a .shot__frame, .shot--d .shot__frame { aspect-ratio: 4 / 5; }
+.shot--b .shot__frame { aspect-ratio: 4 / 3; }
+.shot--c .shot__frame { aspect-ratio: 1; }
+.shot--full .shot__frame { aspect-ratio: 16 / 10; }
+
+@media (min-width: 768px) {
+  .strip {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: clamp(16px, 2vw, 32px);
+    row-gap: clamp(64px, 9vw, 140px);
+    padding-inline: var(--gutter);
+  }
+  .shot { padding: 0 !important; }
+  .shot--a    { grid-column: 1 / span 6; }
+  .shot--b    { grid-column: 8 / span 5; align-self: end; margin-bottom: 18%; }
+  .shot--full { grid-column: 1 / -1; margin-inline: calc(var(--gutter) * -1); }
+  .shot--full .shot__frame { aspect-ratio: 2.2 / 1; }
+  .shot--c    { grid-column: 2 / span 4; align-self: start; margin-top: 12%; }
+  .shot--d    { grid-column: 7 / span 5; }
+}
+
+/* ---------- 7. Footer ---------- */
+.footer {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 22px;
+  padding: 56px var(--gutter) 40px;
+  font-size: 12px;
+  color: color-mix(in srgb, var(--ink) 75%, var(--silver));
+  background:
+    linear-gradient(180deg, var(--silver-lo) 0%, var(--silver-deep) 100%);
+  border-top: 1px solid rgba(255,255,255,.35);
+}
+.footer__brand { display: flex; align-items: center; gap: 10px; }
+.footer__name {
+  font-family: var(--font-display); font-weight: 500;
+  font-size: 13px; letter-spacing: .24em; text-transform: uppercase; color: var(--ink);
+}
+.footer__social { display: flex; flex-wrap: wrap; gap: 6px 22px; }
+.footer a {
+  text-decoration: none; letter-spacing: .14em; text-transform: uppercase; font-size: 11px;
+  background: linear-gradient(90deg, var(--green), var(--purple)) left bottom / 0 1px no-repeat;
+  transition: background-size .5s var(--ease), color .3s;
+  padding: 6px 0;
+}
+.footer a:hover, .footer a:focus-visible { background-size: 100% 1px; color: var(--ink); }
+.footer__contact { justify-self: start; text-transform: none !important; letter-spacing: .04em !important; font-size: 13px !important; }
+.footer__legal { margin: 8px 0 0; font-size: 11px; opacity: .7; }
+
+@media (min-width: 768px) {
+  .footer {
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    column-gap: 48px;
+    padding-block: 64px 44px;
+  }
+  .footer__social { justify-content: center; }
+  .footer__legal { grid-column: 1 / -1; padding-top: 28px; border-top: 1px solid rgba(14,15,18,.1); }
+}
+
+/* ---------- 8. TASTE — food view (warm treatment) ---------- */
+.taste {
+  position: fixed; inset: 0; z-index: 50;
+  display: block;
+  visibility: hidden;
+  pointer-events: none;
+}
+.taste[hidden] { display: none; }
+.taste.is-open { visibility: visible; pointer-events: auto; }
+
+.taste__scrim {
+  position: absolute; inset: 0;
+  background: color-mix(in srgb, var(--cocoa) 40%, transparent);
+  opacity: 0;
+  transition: opacity .8s var(--ease);
+}
+.taste.is-open .taste__scrim { opacity: 1; }
+
+.taste__panel {
+  position: absolute; inset: 0;
+  overflow-y: auto; overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  color: var(--cocoa);
+  background:
+    radial-gradient(70% 45% at 85% 0%, color-mix(in srgb, var(--amber) 32%, transparent), transparent 70%),
+    radial-gradient(60% 40% at 0% 100%, color-mix(in srgb, var(--ember) 18%, transparent), transparent 70%),
+    radial-gradient(40% 30% at 10% 10%, color-mix(in srgb, var(--purple) 7%, transparent), transparent 70%),
+    linear-gradient(180deg, var(--cream), var(--sand));
+  background-attachment: local;
+  transform: translate3d(0, 100%, 0);
+  transition: transform .9s var(--ease);
+  outline: none;
+}
+.taste.is-open .taste__panel { transform: none; }
+
+@media (min-width: 1024px) {
+  /* Desktop: slide-in panel from the right with a sliver of silver still visible */
+  .taste__panel {
+    inset: 0 0 0 auto;
+    width: min(1080px, 88vw);
+    transform: translate3d(100%, 0, 0);
+    box-shadow: -40px 0 80px rgba(42,27,18,.25);
+  }
+}
+
+.taste__bar {
+  position: sticky; top: 0; z-index: 2;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px var(--gutter);
+  background: color-mix(in srgb, var(--cream) 78%, transparent);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+.taste__bar img { filter: sepia(.6) saturate(1.4) hue-rotate(-12deg) brightness(.8); }
+.taste__close {
+  display: inline-flex; align-items: center; gap: 10px;
+  min-height: 44px; padding: 0 2px;
+  background: none; border: 0; cursor: pointer;
+  font-size: 11px; font-weight: 500; letter-spacing: .3em; text-transform: uppercase;
+  color: var(--cocoa);
+  transition: color .3s;
+}
+.taste__close:hover { color: var(--purple); }
+
+.taste__intro { padding: clamp(32px, 8vh, 80px) var(--gutter) clamp(28px, 5vh, 56px); max-width: 820px; }
+.eyebrow--warm { color: var(--cocoa-mist); }
+.taste__title {
+  margin: 0;
+  font-family: var(--font-display); font-weight: 400;
+  font-size: clamp(3rem, 12vw, 7.5rem);
+  line-height: .92; letter-spacing: -.01em;
+}
+.taste__lede { margin: 22px 0 0; max-width: 40ch; font-size: 16px; color: var(--cocoa-mist); }
+
+.taste__menu { padding: 0 var(--gutter); }
+.taste__group + .taste__group { margin-top: clamp(48px, 8vh, 88px); }
+.taste__group-title {
+  display: flex; align-items: center; gap: 16px;
+  margin: 0 0 24px;
+  font-size: 11px; font-weight: 500; letter-spacing: .32em; text-transform: uppercase;
+  color: var(--cocoa-mist);
+}
+.taste__group-title::after { content: ""; flex: 1; height: 1px; background: color-mix(in srgb, var(--cocoa) 15%, transparent); }
+
+.taste__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+  margin: 0; padding: 0; list-style: none;
+}
+@media (min-width: 600px) { .taste__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 24px; } }
+@media (min-width: 1280px) { .taste__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+
+.dish { display: flex; flex-direction: column; }
+.dish__img {
+  position: relative; overflow: hidden;
+  aspect-ratio: 4 / 3;
+  border-radius: 4px;
+  background: var(--sand);
+}
+.dish__img img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 1.2s var(--ease), filter 1.2s var(--ease);
+  filter: saturate(1.05) contrast(1.02);
+}
+.dish:hover .dish__img img { transform: scale(1.04); filter: saturate(1.15) contrast(1.04); }
+.dish__tag {
+  position: absolute; left: 12px; top: 12px;
+  padding: 5px 9px; border-radius: 99px;
+  font-size: 9px; font-weight: 500; letter-spacing: .24em; text-transform: uppercase;
+  background: color-mix(in srgb, var(--cream) 88%, transparent); color: var(--cocoa);
+}
+.dish__tag::before {
+  content: ""; display: inline-block; width: 5px; height: 5px; margin-right: 7px; border-radius: 50%;
+  background: var(--green); vertical-align: 1px;
+}
+.dish__tag--purple::before { background: var(--purple); }
+.dish__row {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
+  margin-top: 16px;
+}
+.dish__name { margin: 0; font-family: var(--font-display); font-weight: 500; font-size: 1.2rem; letter-spacing: .01em; }
+.dish__price { font-size: 14px; font-variant-numeric: tabular-nums; color: var(--ember); white-space: nowrap; }
+.dish__desc { margin: 6px 0 0; font-size: 14px; color: var(--cocoa-mist); max-width: 44ch; }
+
+.taste__note {
+  margin: clamp(56px, 10vh, 96px) var(--gutter) 0;
+  padding: 28px 0 48px;
+  border-top: 1px solid color-mix(in srgb, var(--cocoa) 15%, transparent);
+  font-size: 12px; letter-spacing: .08em; color: var(--cocoa-mist);
+}
+
+/* Staggered entry of menu items when the view opens */
+.taste .dish { opacity: 0; transform: translate3d(0, 16px, 0); transition: opacity .9s var(--ease), transform .9s var(--ease); }
+.taste.is-open .dish { opacity: 1; transform: none; transition-delay: calc(.35s + var(--i, 0) * 60ms); }
+
+/* ---------- 9. Scroll reveal ---------- */
+.reveal { opacity: 0; transform: translate3d(0, 24px, 0); transition: opacity var(--slow) var(--ease), transform var(--slow) var(--ease); }
+.reveal.is-in { opacity: 1; transform: none; }
+.no-js .reveal { opacity: 1; transform: none; }
+
+/* ---------- 10. Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+    transition-delay: 0s !important;
+  }
+  .hero__sheen { display: none; }
+  .reveal, .taste .dish { opacity: 1; transform: none; }
+  .shot__frame img { transform: none; }
+}
+
+/* ---------- 11. Placeholder helper ----------
+   Open the page with ?slots to outline every [INSERT …] slot with its label. */
+.show-slots [data-slot] { outline: 1px dashed var(--purple); outline-offset: 4px; }
+.show-slots [data-slot]:not(img)::after {
+  content: " [" attr(data-slot) "]";
+  font: 500 9px/1 var(--font-body); letter-spacing: .1em;
+  color: var(--purple); vertical-align: super;
+}

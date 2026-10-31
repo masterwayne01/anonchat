@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pinkoil</title>
+  <meta name="description" content="Pinkoil — a world, slowly poured. Food, clothing, and what comes next." />
+  <meta name="theme-color" content="#c9ccd1" />
+  <link rel="icon" href="assets/symbols/symbol-small.svg" type="image/svg+xml" />
+
+  <!-- Fonts: Clash Display (headings) + Satoshi (body), both from Fontshare. Swap here if you license Söhne / Neue Haas. -->
+  <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500&f[]=satoshi@400,500&display=swap" />
+
+  <!-- Preload the hero symbol so the centerpiece paints first -->
+  <link rel="preload" href="assets/symbols/symbol-primary.svg" as="image" type="image/svg+xml" />
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ============================================================
+       TOP BAR — minimal. Small symbol left, the "secret door" right.
+       ============================================================ -->
+  <header class="topbar" id="topbar">
+    <a class="topbar__mark" href="#top" aria-label="Pinkoil — back to top">
+      <img src="assets/symbols/symbol-small.svg" alt="" width="28" height="28" />
+    </a>
+
+    <!-- FOOD ENTRY POINT — label chosen: "Taste". Change the text here if you prefer "Menu" / "Food". -->
+    <button class="door" type="button" id="taste-open"
+            aria-haspopup="dialog" aria-controls="taste" aria-expanded="false">
+      <span class="door__dot" aria-hidden="true"></span>
+      <span class="door__label">Taste</span>
+    </button>
+  </header>
+
+  <main id="main">
+
+    <!-- ============================================================
+         SECTION 1 — HERO
+         ============================================================ -->
+    <section class="hero" id="top" aria-label="Pinkoil">
+      <div class="hero__metal" aria-hidden="true"></div>
+      <div class="hero__sheen" aria-hidden="true"></div>
+
+      <div class="hero__center">
+        <div class="hero__symbol">
+          <span class="hero__glow" aria-hidden="true"></span>
+          <!-- [INSERT SYMBOL FILE] → assets/symbols/symbol-primary.svg -->
+          <img src="assets/symbols/symbol-primary.svg" alt="Pinkoil" width="240" height="240"
+               fetchpriority="high" data-slot="INSERT SYMBOL FILE" />
+        </div>
+
+        <!-- [INSERT HERO LINE] — under ~8 words, evocative, not descriptive. -->
+        <p class="hero__line" data-slot="INSERT HERO LINE">A world, slowly poured.</p>
+      </div>
+
+      <a class="scroll-cue" href="#about" aria-label="Scroll to learn more">
+        <span class="scroll-cue__line" aria-hidden="true"></span>
+        <span class="scroll-cue__text">Scroll</span>
+      </a>
+    </section>
+
+    <!-- ============================================================
+         SECTION 2 — DESCRIPTION
+         ============================================================ -->
+    <section class="about" id="about" aria-labelledby="about-title">
+      <div class="about__wash" aria-hidden="true"></div>
+
+      <div class="about__inner">
+        <p class="eyebrow reveal" id="about-title">Not a shop. A world.</p>
+
+        <!-- [INSERT DESCRIPTION COPY] — 2–4 sentences. -->
+        <p class="about__copy reveal" data-slot="INSERT DESCRIPTION COPY">
+          Pinkoil is a feeling before it is a product. It begins at the table and
+          carries into what you wear — food, clothing, and whatever we decide to make next.
+          Cool on the surface. Warm underneath.
+        </p>
+
+        <ul class="about__lines reveal" aria-label="Lines">
+          <li>Food</li>
+          <li>Clothing</li>
+          <li class="is-soon">More, soon</li>
+        </ul>
+      </div>
+
+      <!-- [INSERT SECONDARY SYMBOL] → assets/symbols/symbol-secondary.svg -->
+      <img class="about__mark reveal" src="assets/symbols/symbol-secondary.svg" alt=""
+           width="160" height="160" loading="lazy" decoding="async" data-slot="INSERT SECONDARY SYMBOL" />
+    </section>
+
+    <!-- ============================================================
+         SECTION 3 — PHOTO STRIP (editorial / offset)
+         [INSERT 3–6 PHOTOS] — replace files in assets/photos/.
+         Delete any <figure> you don't need; the layout holds with 3+.
+         ============================================================ -->
+    <section class="strip" aria-label="The Pinkoil world">
+      <figure class="shot shot--a reveal">
+        <div class="shot__frame" data-speed="0.06">
+          <img src="assets/photos/photo-01.svg" alt="[INSERT ALT — photo 01]" width="1200" height="1500"
+               loading="lazy" decoding="async" data-slot="INSERT PHOTO 01" />
+        </div>
+        <figcaption>01 — Product</figcaption>
+      </figure>
+
+      <figure class="shot shot--b reveal">
+        <div class="shot__frame" data-speed="-0.05">
+          <img src="assets/photos/photo-02.svg" alt="[INSERT ALT — photo 02]" width="1200" height="900"
+               loading="lazy" decoding="async" data-slot="INSERT PHOTO 02" />
+        </div>
+        <figcaption>02 — Texture</figcaption>
+      </figure>
+
+      <figure class="shot shot--full reveal">
+        <div class="shot__frame" data-speed="0.08">
+          <img src="assets/photos/photo-03.svg" alt="[INSERT ALT — photo 03]" width="2400" height="1100"
+               loading="lazy" decoding="async" data-slot="INSERT PHOTO 03" />
+        </div>
+      </figure>
+
+      <figure class="shot shot--c reveal">
+        <div class="shot__frame" data-speed="-0.04">
+          <img src="assets/photos/photo-04.svg" alt="[INSERT ALT — photo 04]" width="1000" height="1000"
+               loading="lazy" decoding="async" data-slot="INSERT PHOTO 04" />
+        </div>
+        <figcaption>03 — Detail</figcaption>
+      </figure>
+
+      <figure class="shot shot--d reveal">
+        <div class="shot__frame" data-speed="0.05">
+          <img src="assets/photos/photo-05.svg" alt="[INSERT ALT — photo 05]" width="1200" height="1500"
+               loading="lazy" decoding="async" data-slot="INSERT PHOTO 05" />
+        </div>
+        <figcaption>04 — Worn</figcaption>
+      </figure>
+    </section>
+  </main>
+
+  <!-- ============================================================
+       SECTION 4 — FOOTER (the one place the name sits plainly)
+       ============================================================ -->
+  <footer class="footer">
+    <div class="footer__brand">
+      <img src="assets/symbols/symbol-small.svg" alt="" width="22" height="22" loading="lazy" />
+      <span class="footer__name">Pinkoil</span>
+    </div>
+
+    <nav class="footer__social" aria-label="Social">
+      <!-- [INSERT HANDLES] -->
+      <a href="https://instagram.com/" rel="noopener" target="_blank" data-slot="INSERT HANDLE">Instagram</a>
+      <a href="https://tiktok.com/" rel="noopener" target="_blank" data-slot="INSERT HANDLE">TikTok</a>
+      <a href="https://x.com/" rel="noopener" target="_blank" data-slot="INSERT HANDLE">X</a>
+    </nav>
+
+    <!-- [INSERT CONTACT] -->
+    <a class="footer__contact" href="mailto:hello@example.com" data-slot="INSERT CONTACT">hello@example.com</a>
+
+    <p class="footer__legal">© <span id="year">2026</span> Pinkoil. All rights reserved.</p>
+  </footer>
+
+  <!-- ============================================================
+       SECTION 5 — FOOD VIEW ("Taste"). Hidden until the door is used.
+       Content is rendered from js/menu-data.js.
+       ============================================================ -->
+  <div class="taste" id="taste" role="dialog" aria-modal="true" aria-labelledby="taste-title" hidden>
+    <div class="taste__scrim" data-close></div>
+
+    <div class="taste__panel" tabindex="-1">
+      <header class="taste__bar">
+        <img src="assets/symbols/symbol-small.svg" alt="" width="24" height="24" />
+        <button class="taste__close" type="button" data-close>
+          <span>Return</span>
+          <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M3 3l10 10M13 3L3 13" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round"/></svg>
+        </button>
+      </header>
+
+      <div class="taste__intro">
+        <p class="eyebrow eyebrow--warm">Pinkoil — Food</p>
+        <h2 class="taste__title" id="taste-title">Taste</h2>
+        <!-- [INSERT FOOD CONTENT] — intro line -->
+        <p class="taste__lede" data-slot="INSERT FOOD INTRO">
+          A short, changing menu. Made slowly, served warm.
+        </p>
+      </div>
+
+      <div class="taste__menu" id="taste-menu"><!-- rendered by js/main.js from js/menu-data.js --></div>
+
+      <!-- [INSERT FOOD CONTENT] — ordering / location note -->
+      <p class="taste__note" data-slot="INSERT ORDER INFO">
+        Order &amp; pickup details — [INSERT ORDERING LINK / HOURS / LOCATION]
+      </p>
+    </div>
+  </div>
+
+  <script src="js/menu-data.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>
