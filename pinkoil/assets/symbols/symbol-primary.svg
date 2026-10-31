@@ -1,0 +1,17 @@
+<!-- [INSERT SYMBOL FILE] Placeholder primary symbol. Replace this file with the real Pinkoil primary mark (keep the filename, or update index.html). -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="Pinkoil symbol">
+  <defs>
+    <linearGradient id="m" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3a3d43"/>
+      <stop offset=".45" stop-color="#14161a"/>
+      <stop offset="1" stop-color="#2a2d33"/>
+    </linearGradient>
+    <linearGradient id="e" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity=".55"/>
+      <stop offset=".5" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <circle cx="120" cy="132" r="84" fill="none" stroke="url(#m)" stroke-width="10"/>
+  <path d="M120 18 C120 18 72 86 72 122 a48 48 0 0 0 96 0 C168 86 120 18 120 18Z" fill="url(#m)"/>
+  <path d="M120 34 C108 52 86 88 84 116" fill="none" stroke="url(#e)" stroke-width="5" stroke-linecap="round"/>
+</svg>
